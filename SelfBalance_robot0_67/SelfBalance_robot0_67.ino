@@ -70,11 +70,11 @@ float MOTORSLACK_B=39;                     // Compensate for motor slack range (
 
 int MotorAspeed, MotorBspeed, MotorSlack,moveState=0,d_speed,d_dir;
 
-float yaw,input,out,setpoint,originalSetpoint,Buffer[3];
-float yinput,yout,ysetpoint,yoriginalSetpoint;
+double yaw,input,out,setpoint,originalSetpoint,Buffer[3];
+double yinput,yout,ysetpoint,yoriginalSetpoint;
 //uint32_t timer,timer1;
 
-float bal_kp,bal_ki,bal_kd,rot_kp,rot_ki,rot_kd;
+double bal_kp,bal_ki,bal_kd,rot_kp,rot_ki,rot_kd;
 int addressFloat=0;
 
 PID pid(&input,&out,&setpoint,BALANCE_KP,BALANCE_KI,BALANCE_KD,DIRECT);
