@@ -1,9 +1,9 @@
-#define version_0.67
+#define version_0.66
 
 //#define DEBUGING            //uncomment it to debug.It will decrease the processing speed.
 #define BLUE                //comment if not using bluetooth
 
-#include <EEPROMex.h>                             //EEPROM library for storing pid values
+//#include <EEPROMex.h>                             //EEPROM library for storing pid values
 #include <I2Cdev.h>
 #include <Wire.h>
 #include <MPU6050_6Axis_MotionApps20.h>
@@ -75,7 +75,7 @@ double yinput,yout,ysetpoint,yoriginalSetpoint;
 //uint32_t timer,timer1;
 
 double bal_kp,bal_ki,bal_kd,rot_kp,rot_ki,rot_kd;
-int addressFloat=0;
+//int addressFloat=0;
 
 PID pid(&input,&out,&setpoint,BALANCE_KP,BALANCE_KI,BALANCE_KD,DIRECT);
 PID rot(&yinput,&yout,&ysetpoint,ROTATION_KP,ROTATION_KI,ROTATION_KD,DIRECT);
@@ -113,6 +113,7 @@ ysetpoint = 0;
 yoriginalSetpoint = ysetpoint;
 
 //first save pid values in EEPROM manually,otherwise it will give garbage values
+/*
 addressFloat  = EEPROM.getAddress(sizeof(float));          //reading from EEPROM
 bal_kp=EEPROM.readFloat(addressFloat);
 bal_ki=EEPROM.readFloat((addressFloat+=sizeof(float)));
@@ -120,6 +121,14 @@ bal_kd=EEPROM.readFloat((addressFloat+=sizeof(float)));
 rot_kp=EEPROM.readFloat((addressFloat+=sizeof(float)));
 rot_ki=EEPROM.readFloat((addressFloat+=sizeof(float)));
 rot_kd=EEPROM.readFloat((addressFloat+=sizeof(float)));
+*/
+
+bal_kp=BALANCE_KP;
+bal_ki=BALANCE_KI;
+bal_kd=BALANCE_KD;
+rot_kp=ROTATION_KP;
+rot_ki=ROTATION_KI;
+rot_kd=ROTATION_KD;
 
 pid.SetTunings(bal_kp,bal_ki,bal_kd);                      //change PID values
 rot.SetTunings(rot_kp,rot_ki,rot_kd);
@@ -323,7 +332,7 @@ void change_pid(bool b)        //change pid values
 
 
 void save_pid(bool pid)        //save pid values
-{  
+{ /* 
   addressFloat = 0;
  if(pid)
  {
@@ -338,7 +347,7 @@ void save_pid(bool pid)        //save pid values
  EEPROM.updateFloat((addressFloat+=sizeof(float)),rot_ki);
  EEPROM.updateFloat((addressFloat+=sizeof(float)),rot_kd);
    //Serial.println("Rupdated");
- }
+ }*/
 }
 
 
