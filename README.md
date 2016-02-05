@@ -6,5 +6,5 @@ A Self Balancing Robot
 
 
 For More Information,code,tutorial,visit-
-<a href="manpreetsingh80.tumblr.com">Tumblr Blog</a>
+<a href="http://electronics2work.com/SelfBalancing.html">Electronics2Work</a>
 
